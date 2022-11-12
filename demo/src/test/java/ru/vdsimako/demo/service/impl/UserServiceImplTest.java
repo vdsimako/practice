@@ -15,6 +15,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
@@ -49,6 +50,8 @@ class UserServiceImplTest {
                 .password("test_secret")
                 .build();
 
-        assertEquals("test message", expectedCreatedUser, actualCreatedUser);
+        assertEquals("expected and actual must be equal", expectedCreatedUser, actualCreatedUser);
+
+        assertTrue("email must ends with mail.ru", createUserDto.email().endsWith("@mail.ru"));
     }
 }
