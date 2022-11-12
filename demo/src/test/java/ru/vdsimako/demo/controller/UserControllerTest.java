@@ -1,8 +1,9 @@
-package ru.vdsimako.demo;
+package ru.vdsimako.demo.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
@@ -11,10 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
                 "spring.datasource.driver-class-name=org.testcontainers.jdbc.ContainerDatabaseDriver"
         }
 )
-class DemoApplicationTests {
+class UserControllerTest {
 
     @Test
-    void contextLoads() {
+    void createUser() {
     }
-
 }

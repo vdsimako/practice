@@ -21,15 +21,19 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserDto createUser(CreateUserDto createUserDto) {
 
-        User user = User.builder().build();
+        User user = User.builder()
+                .email(createUserDto.email())
+                .password(createUserDto.password())
+                .build();
 
         User createdUser = userRepository.save(user);
 
 //        вызов стороннего сервиса который что-то сохраняет в бд
 
         UserDto userDto = UserDto.builder()
-                .email(createUserDto.email())
-                .password(createUserDto.password())
+                .id(createdUser.getId())
+                .email(createdUser.getEmail())
+                .password(createdUser.getPassword())
                 .build();
 
         return userDto;

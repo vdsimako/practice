@@ -1,7 +1,7 @@
 server:
+  port: 8080
   servlet:
     context-path: /user-srv
-
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
@@ -9,4 +9,13 @@ spring:
 #    username: practice
 #    password: practice
   liquibase:
-    drop-first: false
+    drop-first: true
+
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]

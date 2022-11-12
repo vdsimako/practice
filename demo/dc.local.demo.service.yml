@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  demo:
+    image: demo_test
+    container_name: demo
+    hostname: demo
+    restart: always
+    environment:
+      - SPRING_PROFILES_ACTIVE={profile}
+    ports:
+      - 8080:8080
+      - 8081:8081
+    networks:
+      - "demo_network"
+    healthcheck:
+      test: wget localhost:8081/actuator/health -q -O - | grep \"status\":\"UP\" || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 1m30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5Mb"
+        max-file: "1"
+    command: "java -Xmx512m -jar /app/demo-0.0.1-SNAPSHOT.jar"
+
+networks:
+  demo_network:
+    external: true
